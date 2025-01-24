@@ -46,19 +46,40 @@
 		{ filename: 'zoom_to_afp_desk.webp', tags: [] },
 		{ filename: 'zoom_to_afp_mobile.webp', tags: [] }
 	];
+
+	const all_maps = maps.map((m) => {
+		const { normal, lowres } = getWebPFilenames(m.filename);
+		return {
+			...m,
+			filename_webp: normal,
+			filename_webp_lowres: lowres
+		};
+	});
+
+	function getWebPFilenames(filename) {
+		const baseName = filename.replace(/\.[^/.]+$/, ''); // Remove the extension
+		const normal = `maps/webp/${baseName}.webp`; // Normal WebP filename
+		const lowres = `maps/webp/lowres/${baseName}_lowres.webp`; // Low-res WebP filename
+
+		return { normal, lowres };
+	}
 </script>
 
 <div
-	class="maps-container dt:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-4"
+	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
 >
-	{#each maps as map, i}
+	{#each all_maps as map, i}
 		<div class="relative">
-			<img
+			<!-- <img
 				src="maps/{map.filename}"
 				alt=""
 				class="aspect-square w-full object-cover blur-[3px] duration-1000 hover:blur-0 hover:transition-all"
-			/>
-			<div class="bg-radial-gradient-white dt:hidden pointer-events-none absolute inset-0"></div>
+			/> -->
+			<div
+				style="background-image: url({map.filename_webp}), url({map.filename_webp_lowres}); width: 100%; aspect-ratio: 1; background-repeat: no-repeat, no-repeat; background-size: cover, cover; background-position: center, center;"
+				class="hover:blur-none dt:blur-sm"
+			></div>
+			<div class="pointer-events-none absolute inset-0 bg-radial-gradient-white dt:hidden"></div>
 		</div>
 	{/each}
 </div>
