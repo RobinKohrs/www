@@ -1,5 +1,6 @@
 <script>
 	const maps = [
+		{ filename: 'ticker.png', tags: [] },
 		{ filename: '001.png', tags: [] },
 		{ filename: '107.webp', tags: [] },
 		{ filename: '13_22_world-1300w.png', tags: [] },
