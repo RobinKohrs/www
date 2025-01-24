@@ -27,7 +27,7 @@
 		background-position: center, center;
 		cursor: pointer;
 		filter: blur(2px);
-		border-radius: 5px;
+		border-radius: 100vw;
 		opacity: 0.8;
 		cursor: pointer;
 		transition: filter 0.2s;
@@ -42,5 +42,7 @@
 	/*for the desktop only*/
 	.image-fade {
 		background: radial-gradient(circle, transparent, var(--color-bg) 82%);
+		border-radius: 100vw;
+		scale: 1.05;
 	}
 </style>
