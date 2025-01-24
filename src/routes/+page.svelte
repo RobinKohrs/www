@@ -69,7 +69,7 @@
 </script>
 
 <div
-	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(250,1fr))]"
+	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
 >
 	{#each all_maps as map, i}
 		<ImageModel image_path={map.filename_webp} image_path_lowres={map.filename_webp_lowres} />
