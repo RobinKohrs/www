@@ -80,7 +80,32 @@
 				style="background-image: url({map.filename_webp}), url({map.filename_webp_lowres}); width: 100%; aspect-ratio: 1; background-repeat: no-repeat, no-repeat; background-size: cover, cover; background-position: center, center;"
 				class="hover:blur-none dt:blur-sm"
 			></div>
-			<div class="pointer-events-none absolute inset-0 bg-radial-gradient-white dt:hidden"></div>
+			<div class="image-fade pointer-events-none absolute inset-0 dt:hidden"></div>
 		</div>
 	{/each}
 </div>
+
+<style>
+	:global(*) {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	:global(:root) {
+		--color-bg: #ebebeb;
+		--color-text: #8d608c;
+	}
+
+	:global(body) {
+		line-height: 1.5;
+		height: 100vh;
+		min-height: 100vh;
+		box-sizing: border-box;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		font-family: 'vollkorn', sans-serif;
+	}
+	.image-fade {
+		background: radial-gradient(circle, transparent, var(--color-bg) 82%);
+	}
+</style>

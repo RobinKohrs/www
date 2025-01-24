@@ -20,11 +20,11 @@
 
 <section class="frontpage">
 	<div
-		class="frontpage-info dt:min-h-screen dt:border-r-2 dt:border-b-0 relative flex flex-col border-b-2 p-4"
+		class="frontpage-info relative flex flex-col border-b-2 p-4 dt:min-h-screen dt:border-b-0 dt:border-r-2"
 	>
 		<div class="sticky top-[1rem]">
-			<span class="dt:mb-4 text-xl font-bold"><a href="/">Robin Kohrs</a></span>
-			<div class="routes dt:flex-col flex justify-end gap-2">
+			<span class="text-xl font-bold dt:mb-4"><a href="/">Robin Kohrs</a></span>
+			<div class="routes flex justify-end gap-2 dt:flex-col">
 				{#each routes as route, i}
 					<a class="dt:text-lg" href={route.url}>{route.name}</a>
 				{/each}
@@ -48,7 +48,7 @@
 		grid-template-rows: auto 1fr;
 	}
 
-	@media (min-width: 700px) {
+	@media (min-width: 1200px) {
 		.frontpage {
 			grid-template-columns: auto 1fr;
 		}

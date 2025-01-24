@@ -4,7 +4,7 @@ export default {
 
 	theme: {
 		screens: {
-			dt: '700px'
+			dt: '1200px'
 		},
 		extend: {
 			backgroundImage: {
