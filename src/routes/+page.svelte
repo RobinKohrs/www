@@ -1,4 +1,6 @@
 <script>
+	import ImageModel from '$lib/ImageModel.svelte';
+
 	const maps = [
 		{ filename: 'ticker.png', tags: [] },
 		{ filename: '001.png', tags: [] },
@@ -70,18 +72,16 @@
 	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]"
 >
 	{#each all_maps as map, i}
-		<div class="relative">
-			<!-- <img
-				src="maps/{map.filename}"
-				alt=""
-				class="aspect-square w-full object-cover blur-[3px] duration-1000 hover:blur-0 hover:transition-all"
-			/> -->
+		<ImageModel image_path={map.filename_webp} image_path_lowres={map.filename_webp_lowres} />
+
+		<!-- <div class="relative">
 			<div
+				onclick={() => console.log('image clicked')}
 				style="background-image: url({map.filename_webp}), url({map.filename_webp_lowres}); width: 100%; aspect-ratio: 1; background-repeat: no-repeat, no-repeat; background-size: cover, cover; background-position: center, center;"
-				class="hover:blur-none dt:blur-sm"
+				class="cursor-pointer hover:blur-none dt:blur-sm"
 			></div>
 			<div class="image-fade pointer-events-none absolute inset-0 dt:hidden"></div>
-		</div>
+		</div> -->
 	{/each}
 </div>
 
@@ -104,8 +104,5 @@
 		background-color: var(--color-bg);
 		color: var(--color-text);
 		font-family: 'vollkorn', sans-serif;
-	}
-	.image-fade {
-		background: radial-gradient(circle, transparent, var(--color-bg) 82%);
 	}
 </style>
