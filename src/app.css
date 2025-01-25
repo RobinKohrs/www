@@ -4,21 +4,20 @@
 
 /* @import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap'); */
 
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-}
+} */
 
-body {
+/* body {
 	line-height: 1.5;
 	height: 100vh;
 	min-height: 100vh;
-	/* min-height: 100%; */
 	box-sizing: border-box;
-	--color-bg: #ebebeb;
+	--color-bg: 235, 235, 235;
 	--color-text: #8D608C;
 	background-color: var(--color-bg);
 	color: var(--color-text);
 	font-family: 'vollkorn', sans-serif;
-}
+} */

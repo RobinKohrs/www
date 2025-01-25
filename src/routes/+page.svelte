@@ -1,5 +1,8 @@
 <script>
+	import ImageModel from '$lib/ImageModel.svelte';
+
 	const maps = [
+		{ filename: 'ticker.png', tags: [] },
 		{ filename: '001.png', tags: [] },
 		{ filename: '107.webp', tags: [] },
 		{ filename: '13_22_world-1300w.png', tags: [] },
@@ -46,19 +49,61 @@
 		{ filename: 'zoom_to_afp_desk.webp', tags: [] },
 		{ filename: 'zoom_to_afp_mobile.webp', tags: [] }
 	];
+
+	const all_maps = maps.map((m) => {
+		const { normal, lowres } = getWebPFilenames(m.filename);
+		return {
+			...m,
+			filename_webp: normal,
+			filename_webp_lowres: lowres
+		};
+	});
+
+	function getWebPFilenames(filename) {
+		const baseName = filename.replace(/\.[^/.]+$/, ''); // Remove the extension
+		const normal = `maps/webp/${baseName}.webp`; // Normal WebP filename
+		const lowres = `maps/webp/lowres/${baseName}_lowres.webp`; // Low-res WebP filename
+
+		return { normal, lowres };
+	}
 </script>
 
 <div
-	class="maps-container dt:grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-4"
+	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
 >
-	{#each maps as map, i}
-		<div class="relative">
-			<img
-				src="maps/{map.filename}"
-				alt=""
-				class="aspect-square w-full object-cover blur-[3px] duration-1000 hover:blur-0 hover:transition-all"
-			/>
-			<div class="bg-radial-gradient-white dt:hidden pointer-events-none absolute inset-0"></div>
-		</div>
+	{#each all_maps as map, i}
+		<ImageModel image_path={map.filename_webp} image_path_lowres={map.filename_webp_lowres} />
+
+		<!-- <div class="relative">
+			<div
+				onclick={() => console.log('image clicked')}
+				style="background-image: url({map.filename_webp}), url({map.filename_webp_lowres}); width: 100%; aspect-ratio: 1; background-repeat: no-repeat, no-repeat; background-size: cover, cover; background-position: center, center;"
+				class="cursor-pointer hover:blur-none dt:blur-sm"
+			></div>
+			<div class="image-fade pointer-events-none absolute inset-0 dt:hidden"></div>
+		</div> -->
 	{/each}
 </div>
+
+<style>
+	:global(*) {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	:global(:root) {
+		--color-bg: #ebebeb;
+		--color-text: #8d608c;
+	}
+
+	:global(body) {
+		margin: 0;
+		line-height: 1.5;
+		height: 100vh;
+		min-height: 100vh;
+		box-sizing: border-box;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		font-family: 'vollkorn', sans-serif;
+	}
+</style>
