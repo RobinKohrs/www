@@ -10,7 +10,6 @@
 
 <script>
 	let { data } = $props();
-	console.log(data);
 </script>
 
 <Post {title} {date}>
