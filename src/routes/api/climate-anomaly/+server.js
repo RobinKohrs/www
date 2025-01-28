@@ -25,6 +25,7 @@ function csvJSON(csvStr) {
 	// to deal with those before doing the next step
 	// (you might convert them to &&& or something, then covert them back later)
 	// jsfiddle showing the issue https://jsfiddle.net/
+	// forgot to add the stackoverflow url for this solution
 	var headers = lines[0].split(',');
 
 	for (var i = 1; i < lines.length; i++) {
