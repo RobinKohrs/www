@@ -1,5 +1,6 @@
 // src/routes/api/climate-anomaly
 import { json } from '@sveltejs/kit';
+import * as d3 from 'd3';
 import axios from 'axios';
 export async function GET() {
 	const csvUrl =
@@ -14,7 +15,21 @@ export async function GET() {
 	const text_data = file.slice(startIndex);
 	const result = csvJSON(text_data);
 
-	return json(result);
+	let processedData = result.map((d) => {
+		const fullDate = parseDate(d.date);
+		return {
+			year: +formatYear(fullDate), // Extract the year
+			date: fullDate, // Original date
+			displayDate: parseYear2000(`2000-${toYear2000(fullDate)}`), // Convert to year 2000
+			t2: parseFloat(d['2t']),
+			clim: parseFloat(d['clim_91-20'])
+		};
+	});
+
+	// Group the data by year for multiple lines
+	let groupedData = d3.group(processedData, (d) => d.year);
+
+	return json(groupedData);
 }
 
 function csvJSON(csvStr) {
@@ -40,3 +55,10 @@ function csvJSON(csvStr) {
 	}
 	return result;
 }
+
+// Process the data
+const parseDate = d3.timeParse('%Y-%m-%d');
+const toYear2000 = d3.timeFormat('%m-%d'); // Format for month and day
+const parseYear2000 = d3.timeParse('%Y-%m-%d');
+
+const formatYear = d3.timeFormat('%Y');
