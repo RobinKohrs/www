@@ -10,9 +10,10 @@
 
 <script>
 	let { data } = $props();
+	console.log('data', data.res.slice(0,2));
 </script>
 
 <Post {title} {date}>
 	<br />
-	{data.data}
+	{JSON.stringify(data.res.slice(0,2))}
 </Post>
