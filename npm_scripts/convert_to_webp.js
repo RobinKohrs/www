@@ -9,13 +9,18 @@ const __dirname = dirname(__filename);
 const rootFolder = resolve(__dirname, '..'); // Adjust this if npm_scripts is deeper
 
 // Paths for input and output
-const inputFolder = path.join(rootFolder, 'static/maps');
-const outputFolder = path.join(rootFolder, 'static/maps/webp');
-const lowResFolder = path.join(outputFolder, 'lowres');
+const inputFolder = path.join(rootFolder, 'static/maps/raw_maps');
+const midResFolder = path.join(rootFolder, 'static/maps/webp_mid');
+const highResFolder = path.join(rootFolder, 'static/maps/webp_high');
+const lowResFolder = path.join(rootFolder, 'static/maps/webp_low');
 
 // Ensure the output folders exist
-if (!fs.existsSync(outputFolder)) {
-	fs.mkdirSync(outputFolder, { recursive: true });
+if (!fs.existsSync(highResFolder)) {
+	fs.mkdirSync(highResFolder, { recursive: true });
+}
+
+if (!fs.existsSync(midResFolder)) {
+	fs.mkdirSync(midResFolder, { recursive: true });
 }
 if (!fs.existsSync(lowResFolder)) {
 	fs.mkdirSync(lowResFolder, { recursive: true });
@@ -32,13 +37,20 @@ const convertImagesToWebP = async () => {
 			// Process only .png, .jpg, and .jpeg files
 			if (['.png', '.webp', '.jpg', '.jpeg'].includes(ext)) {
 				const inputFilePath = path.join(inputFolder, file);
-				const regularOutputPath = path.join(outputFolder, `${baseName}.webp`);
+				const highResOutputPath = path.join(highResFolder, `${baseName}_highres.webp`);
+				const midResOutputPath = path.join(midResFolder, `${baseName}_midres.webp`);
 				const lowResOutputPath = path.join(lowResFolder, `${baseName}_lowres.webp`);
 
-				// Convert to regular WebP
+				// convert to high res				
 				await sharp(inputFilePath)
+					.webp({ quality: 100 }) // Adjust quality as needed
+					.toFile(highResOutputPath);
+
+				// Convert to mid regular WebP
+				await sharp(inputFilePath)
+					.resize(300, 300) // Resize to 100x100 pixels
 					.webp({ quality: 80 }) // Adjust quality as needed
-					.toFile(regularOutputPath);
+					.toFile(midResOutputPath);
 
 				console.log(`Converted: ${file} -> ${baseName}.webp`);
 

@@ -51,20 +51,23 @@
 	];
 
 	const all_maps = maps.map((m) => {
-		const { normal, lowres } = getWebPFilenames(m.filename);
+		const { img_high, img_mid, img_low } = getWebPFilenames(m.filename);
 		return {
 			...m,
-			filename_webp: normal,
-			filename_webp_lowres: lowres
+			image_high: img_high,
+			image_mid: img_mid,
+			image_low: img_low
 		};
 	});
 
+
 	function getWebPFilenames(filename) {
 		const baseName = filename.replace(/\.[^/.]+$/, ''); // Remove the extension
-		const normal = `maps/webp/${baseName}.webp`; // Normal WebP filename
-		const lowres = `maps/webp/lowres/${baseName}_lowres.webp`; // Low-res WebP filename
+		const img_high = `maps/webp_high/${baseName}_highres.webp`; // high
+		const img_mid = `maps/webp_mid/${baseName}_midres.webp`; // mid
+		const img_low = `maps/webp_low/${baseName}_lowres.webp`; // low
 
-		return { normal, lowres };
+		return { img_high, img_mid, img_low };
 	}
 </script>
 
@@ -72,7 +75,8 @@
 	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
 >
 	{#each all_maps as map, i}
-		<ImageModel image_path={map.filename_webp} image_path_lowres={map.filename_webp_lowres} />
+		{console.log(map)}
+		<ImageModel image_high={map.image_high} image_low={map.image_low} image_mid={map.image_mid} />
 
 		<!-- <div class="relative">
 			<div

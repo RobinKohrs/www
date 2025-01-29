@@ -1,12 +1,13 @@
 <script>
-	let { image_path, image_path_lowres } = $props();
+	let { image_high, image_mid, image_low } = $props();
+	$inspect(image_low)
 </script>
 
-{#if image_path || image_path_lowres}
+{#if image_high || image_low || image_mid}
 	<div class="image-container">
 		<div
 			onclick={() => console.log('image clicked')}
-			style="background-image: url({image_path}), url({image_path_lowres});"
+			style="background-image: url({image_low});"
 			class="image"
 		></div>
 
