@@ -5,12 +5,7 @@
 
 {#if image_high || image_low || image_mid}
 	<div class="image-container">
-		<div
-			onclick={() => console.log('image clicked')}
-			style="background-image: url({image_low});"
-			class="image"
-		></div>
-
+	<img class="image" src={image_low} loading="lazy" alt="" width="200" height="200">	
 		<div class="image-fade pointer-events-none absolute inset-0 dt:hidden"></div>
 	</div>
 {/if}
@@ -23,17 +18,16 @@
 	.image {
 		width: 100%;
 		aspect-ratio: 1;
-		background-repeat: no-repeat, no-repeat;
-		background-size: cover, cover;
-		background-position: center, center;
 		cursor: pointer;
 		filter: blur(2px);
 		border-radius: 100vw;
 		opacity: 0.8;
 		cursor: pointer;
-		transition: filter 0.2s;
+		transition: filter 1.5s;
+		box-shadow: none;
 		border: none;
 	}
+
 	.image:hover {
 		filter: none;
 		opacity: 1;

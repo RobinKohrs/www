@@ -75,17 +75,7 @@
 	class="maps-container grid grid-cols-[repeat(auto-fit,minmax(120px,1fr))] gap-4 dt:grid-cols-[repeat(auto-fit,minmax(200px,1fr))]"
 >
 	{#each all_maps as map, i}
-		{console.log(map)}
 		<ImageModel image_high={map.image_high} image_low={map.image_low} image_mid={map.image_mid} />
-
-		<!-- <div class="relative">
-			<div
-				onclick={() => console.log('image clicked')}
-				style="background-image: url({map.filename_webp}), url({map.filename_webp_lowres}); width: 100%; aspect-ratio: 1; background-repeat: no-repeat, no-repeat; background-size: cover, cover; background-position: center, center;"
-				class="cursor-pointer hover:blur-none dt:blur-sm"
-			></div>
-			<div class="image-fade pointer-events-none absolute inset-0 dt:hidden"></div>
-		</div> -->
 	{/each}
 </div>
 

@@ -57,7 +57,7 @@ const convertImagesToWebP = async () => {
 				// Convert to low-res WebP
 				await sharp(inputFilePath)
 					.resize(300, 300) // Resize to 100x100 pixels
-					.webp({ quality: 30 }) // Adjust quality for low-res as needed
+					.webp({ quality: 40 }) // Adjust quality for low-res as needed
 					.toFile(lowResOutputPath);
 
 				console.log(`Converted: ${file} -> ${baseName}_lowres.webp`);
