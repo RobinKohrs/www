@@ -10,10 +10,11 @@
 
 <script>
 	let { data } = $props();
-	console.log(data);
+	let dd = Object.keys(data.data[0]);
+	console.log(dd);
 </script>
 
 <Post {title} {date}>
 	<br />
-	{data.data}
+	{dd}
 </Post>
