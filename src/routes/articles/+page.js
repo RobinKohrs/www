@@ -6,7 +6,7 @@ export async function load({ fetch }) {
 
 	try {
 		// Use hardcoded path for the CSV file
-		const filePath = '/static/articles_data.csv';
+		const filePath = '/articles_data.csv';
 		console.log('Reading CSV file from:', filePath);
 
 		// Read the CSV content from the file
