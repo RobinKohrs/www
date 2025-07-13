@@ -9,7 +9,8 @@
 		"preview": "vite preview",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"prepare-images": "node npm_scripts/convert_to_webp.js"
+		"prepare-images": "node npm_scripts/convert_to_webp.js",
+		"generate-articles-csv": "node npm_scripts/generate_articles_csv.js"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",

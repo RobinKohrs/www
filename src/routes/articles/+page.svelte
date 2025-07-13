@@ -2,6 +2,9 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	export let data;
+
+	console.log('Articles data:', data.articles);
+	console.log('First article:', data.articles[0]);
 </script>
 
 <div class="container">
