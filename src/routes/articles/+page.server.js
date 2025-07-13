@@ -9,14 +9,17 @@ export async function load() {
 	console.log('Articles page load function started');
 
 	try {
-		// Try multiple possible paths for the file
+		// Try multiple possible paths for the file, including Vercel deployment paths
 		const possiblePaths = [
 			path.join(process.cwd(), 'static', 'articles.html'),
 			path.join(process.cwd(), 'static', 'articles.html'),
 			path.join(process.cwd(), '..', 'static', 'articles.html'),
 			path.join(process.cwd(), '..', '..', 'static', 'articles.html'),
 			'/app/static/articles.html', // Common deployment path
-			'/var/www/static/articles.html' // Another common deployment path
+			'/var/www/static/articles.html', // Another common deployment path
+			'/tmp/vercel/static/articles.html', // Vercel specific path
+			'/tmp/vercel/output/static/articles.html', // Vercel build output
+			path.join(process.cwd(), '.vercel', 'output', 'static', 'articles.html') // Vercel local
 		];
 
 		let filePath = null;
@@ -46,26 +49,9 @@ export async function load() {
 				console.log('Could not read static directory:', e.message);
 			}
 
-			// Return test data to verify the page structure works
-			console.log('Returning test data for debugging');
-			return {
-				articles: [
-					{
-						title: 'Test Article 1',
-						subtitle: 'This is a test subtitle',
-						kicker: 'Test',
-						link: 'https://example.com',
-						image: 'https://via.placeholder.com/300x200'
-					},
-					{
-						title: 'Test Article 2',
-						subtitle: 'Another test subtitle',
-						kicker: 'Test',
-						link: 'https://example.com',
-						image: 'https://via.placeholder.com/300x200'
-					}
-				]
-			};
+			// Return empty array instead of test data
+			console.log('No articles file found, returning empty array');
+			return { articles: [] };
 		}
 
 		console.log('File exists, reading content...');
