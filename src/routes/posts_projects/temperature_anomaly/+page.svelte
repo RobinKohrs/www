@@ -13,19 +13,20 @@
 	let { data } = $props();
 </script>
 
-<Post {title} {date}>
-	{#await data.streamed.items}
-		<div class="container">
-			<div class="globe"></div>
-		</div>
-	{:then items}
-		<svg>
-			{#each items.item as item}
-				<circle cx={Math.random() * 100} cy={Math.random() * 100} r=".1"></circle>
-			{/each}
-		</svg>
-	{/await}
-	<!-- {#if data_final}
+<!-- <Post {title} {date}> -->
+<!-- {#await data.streamed.items}
+	<div class="container">
+		<div class="globe"></div>
+	</div>
+{:then items}
+	<svg width="100%" height="100%">
+		{#each items as item}
+			<circle cx={Math.random() * 100} cy={Math.random() * 100} r=".1"></circle>
+		{/each}
+	</svg>
+{/await} -->
+
+<!-- {#if data_final}
 		<svg>
 			{#each data_final as item}
 				<circle cx={Math.random() * 100} cy={Math.random() * 100} r=".1"></circle>
@@ -36,7 +37,7 @@
 			<div class="globe"></div>
 		</div>
 	{/if} -->
-</Post>
+<!-- </Post> -->
 
 <style>
 	/* Container for the globe */
